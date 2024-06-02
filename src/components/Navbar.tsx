@@ -4,9 +4,8 @@ import { buttonVariants } from "./ui/Button";
 import { getAuthSession } from "@/lib/auth";
 import UserAccountNav from "./UserAccountNav";
 
-// TODO: How async declare the server component
-// TODO: Try to play with server/client components
-
+// Async means here that this component is going to be provided from the server
+// React Server Component
 const Navbar = async () => {
   const session = await getAuthSession();
 
@@ -20,8 +19,11 @@ const Navbar = async () => {
       </Link>
 
       {/* search bar */}
-      {session?.user ? <UserAccountNav /> : <Link href='/sign-in' className={buttonVariants()}>Sign In</Link>}
-      
+      {
+        session?.user
+          ? <UserAccountNav user={session?.user} />
+          : <Link href='/sign-in' className={buttonVariants()}>Sign In</Link>
+      }
     </div>
   </div>
 }

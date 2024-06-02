@@ -1,7 +1,36 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier"
+  ],
+  "plugins": ["@typescript-eslint", "react", "jsx-a11y"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "rules": {
     "no-console": ["warn"],
-    "no-unused-vars": ["warn"]
+    "no-unused-vars": ["warn"],
+    "react/prop-types": "off", // Disable prop-types check since you're using TypeScript
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "quotes": ["warn", "single"], // Enforce single quotes
+    "jsx-quotes": ["warn", "prefer-single"] // Enforce single quotes in JSX attributes
   }
 }
