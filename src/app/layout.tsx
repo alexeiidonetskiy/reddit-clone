@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/Toaster";
 import { cn } from "@/lib/utils";
 import "@/styles/globals.css";
@@ -13,7 +14,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,
-  authModal
+  authModal,
 }: {
   children: React.ReactNode;
     authModal: React.ReactNode;
@@ -26,19 +27,20 @@ export default function RootLayout({
         inter.className
       )}
     >
-      <body className="min-h-screen pt-12 bg-slate-50 antialiased">
+      <Providers>
+        <body className="min-h-screen pt-12 bg-slate-50 antialiased">
+          {/* @ts-expect-error Server Component */}
+          <Navbar />
 
-        {/* @ts-expect-error Server Component */}
-        <Navbar />
+          {authModal}
 
-        {authModal}
+          <div className="container max-w-7xl mx-auto h-full pt-12">
+            {children}
+          </div>
 
-        <div className="container max-w-7xl mx-auto h-full pt-12">
-          {children}
-        </div>
-
-        <Toaster />
-      </body>
+          <Toaster />
+        </body>
+      </Providers>
     </html>
   );
 }

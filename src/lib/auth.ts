@@ -69,5 +69,4 @@ export const authOptions: NextAuthOptions = {
   }
 }
 
-//TODO: How this function is working? Why everything is on so high level?
 export const getAuthSession = () => getServerSession(authOptions)
