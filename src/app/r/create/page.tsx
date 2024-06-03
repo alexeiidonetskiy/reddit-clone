@@ -43,13 +43,12 @@ const Page = ({ }) => {
         if (error.response?.status === 401) {
           return loginToast();
         }
+        toast({
+          title: "There was an error",
+          description: "Could not create subreddit",
+          variant: "destructive",
+        });
       }
-
-      toast({
-        title: "There was an error",
-        description: "Could not create subreddit",
-        variant: "destructive",
-      });
     },
     onSuccess: (data) => {
       router.push(`/r/${data}`);
